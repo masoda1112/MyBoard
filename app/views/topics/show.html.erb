@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @topic.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @topic.title %>
+</p>
+
+<h3>Comments</h3>
+<% if @topic.comments.any? %>
+  <ul>
+  <% @topic.comments.each do |comment| %>
+  <li>name:<%= comment.name %></li>
+  <li>comment:<%= comment.body %></li>
+  <% end %>
+  </ul>
+<% end %>
+<%= form_for([@topic, @topic.comments.build]) do |f| %>
+<p>
+name
+<%= f.text_field :name %>
+</p>
+<p>
+comment
+<%= f.text_field :body %>
+</p>
+<p>
+<%= f.submit %>
+</p>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<%= link_to 'Back', topics_path %>
+
